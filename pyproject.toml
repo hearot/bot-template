@@ -9,6 +9,8 @@ python = "^3.8"
 click = "^7.1.2"
 botogram = "^0.5"
 packaging = "^20.4"
+redis = "^3.5.3"
+pymongo = "^3.10.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

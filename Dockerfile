@@ -9,6 +9,8 @@ ENV POETRY_HOME /app/.poetry
 ENV POETRY_VERSION 1.0.9
 ENV PATH $POETRY_HOME/bin:$VIRTUAL_ENV/bin:$PATH
 
+RUN touch config.py
+
 COPY config.py .
 COPY poetry.lock .
 COPY pyproject.toml .
@@ -19,4 +21,5 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/${POETRY_VE
     && poetry config virtualenvs.in-project true
 RUN poetry install --no-dev --no-root
 
-CMD ["python", "start.py"]
+CMD ["python", "start.py", "--mongodb-username", "${MONGO_INITDB_ROOT_USERNAME}", "--mongodb-password", \
+    "${MONGO_INITDB_ROOT_PASSWORD}", "--redis-password", "${REDIS_PASSWORD}"]

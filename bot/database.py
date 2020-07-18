@@ -20,7 +20,27 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import botogram
+from urllib.parse import quote_plus
+
+import redis
+from pymongo import MongoClient
+
 import config
 
-bot = botogram.create(config.TELEGRAM_TOKEN)
+mongo = MongoClient(
+    "mongodb://%s:%s@%s"
+    % (
+        quote_plus(config.MONGODB_USERNAME),
+        quote_plus(config.MONGODB_PASSWORD),
+        config.MONGODB_HOST,
+    )
+)
+
+redis = redis.Redis(
+    host=config.REDIS_HOST,
+    port=config.REDIS_PORT,
+    db=config.REDIS_DATABASE,
+    password=config.REDIS_PASSWORD,
+)
+
+del config, MongoClient, redis, quote_plus

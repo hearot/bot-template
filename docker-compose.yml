@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+    bot:
+        build: .
+        container_name: bot
+        deploy:
+            restart_policy:
+                condition: "unless-stopped"
+        depends_on:
+            - mongodb
+            - redis
+        networks:
+            - bot_network
+    mongodb:
+        container_name: bot_mongodb
+        environment:
+            - MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/mongodb_password
+            - MONGO_INITDB_ROOT_USERNAME_FILE=/run/secrets/mongodb_username
+        image: "mvertes/alpine-mongo:4.0.6-1"
+        networks:
+            - bot_network
+        secrets:
+            - mongodb_password
+            - mongodb_username
+        volumes:
+            - mongo_data:/data
+    redis:
+        container_name: bot_redis
+        environment:
+            - REDIS_PASSWORD=/run/secrets/redis_password
+        image: "redis:alpine"
+        networks:
+            - bot_network
+        secrets:
+            - redis_password
+        volumes:
+            - redis_data:/data
+
+networks:
+    bot_network:
+
+secrets:
+    mongodb_password:
+        external: true
+    mongodb_username:
+        external: true
+    redis_password:
+        external: true
+
+volumes:
+    mongo_data:
+    redis_data:
