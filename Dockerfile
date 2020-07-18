@@ -17,9 +17,8 @@ COPY pyproject.toml .
 COPY bot bot/
 COPY start.py .
 
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/${POETRY_VERSION}/get-poetry.py | python \
-    && poetry config virtualenvs.in-project true
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/${POETRY_VERSION}/get-poetry.py | python
+RUN poetry config virtualenvs.in-project true
 RUN poetry install --no-dev --no-root
 
-CMD ["python", "start.py", "--mongodb-username", "${MONGO_INITDB_ROOT_USERNAME}", "--mongodb-password", \
-    "${MONGO_INITDB_ROOT_PASSWORD}", "--redis-password", "${REDIS_PASSWORD}"]
+CMD ["python", "start.py"]

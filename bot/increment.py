@@ -20,17 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from urllib.parse import quote_plus
+from bot.bot import bot
+from bot.database import redis
 
-import redis
 
-import config
-
-redis = redis.Redis(
-    host=config.REDIS_HOST,
-    port=config.REDIS_PORT,
-    db=config.REDIS_DATABASE,
-    password=config.REDIS_PASSWORD,
-)
-
-del config, quote_plus
+@bot.command("increment")
+def increment(chat, message, args):
+    """Increment a counter"""
+    chat.send(str(redis.incr("counter")))

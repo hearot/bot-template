@@ -20,12 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-MONGODB_HOST = "localhost"
-MONGODB_PASSWORD = "password"
-MONGODB_USERNAME = "user"
-
 REDIS_DATABASE = 0
-REDIS_HOST = "localhost"
+REDIS_HOST = "localhost"  # or "bot_redis" if you're using docker-compose
 REDIS_PASSWORD = None
 REDIS_PORT = 6379
 
