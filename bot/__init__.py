@@ -29,7 +29,7 @@ from .bot import bot  # noqa
 from .database import redis  # noqa
 
 for _, module_name, __ in pkgutil.walk_packages(__path__):
-    if module_name in ('bot', 'database'):
+    if module_name in ("bot", "database"):
         continue
 
     globals()[module_name] = __import__("bot.%s" % module_name)
