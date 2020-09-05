@@ -22,6 +22,6 @@
 
 import redis as redis_server
 
-redis = redis_server.Redis()
+redis = redis_server.Redis(host="bot_redis")
 
 del redis_server
