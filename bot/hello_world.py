@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-REDIS_DATABASE = 0
-REDIS_HOST = "localhost"  # or "bot_redis" if you're using docker-compose
-REDIS_PASSWORD = None
-REDIS_PORT = 6379
+from bot.bot import bot
 
-TELEGRAM_TOKEN = ""
+
+@bot.command("hello")
+def hello_world_command(chat):
+    """Say hello to the world!"""
+    chat.send("Hello, world!")

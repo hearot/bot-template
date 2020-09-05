@@ -20,17 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from urllib.parse import quote_plus
+import redis as redis_server
 
-import redis
+redis = redis_server.Redis()
 
-import config
-
-redis = redis.Redis(
-    host=config.REDIS_HOST,
-    port=config.REDIS_PORT,
-    db=config.REDIS_DATABASE,
-    password=config.REDIS_PASSWORD,
-)
-
-del config, quote_plus
+del redis_server

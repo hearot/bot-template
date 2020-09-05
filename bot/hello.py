@@ -23,7 +23,12 @@
 from bot.bot import bot
 
 
-@bot.command("hello")
-def hello_command(chat, message, args):
-    """Say hello to the world!"""
-    chat.send("Hello world")
+@bot.command("hi")
+def hello_command(chat, message, sb: str = None):
+    """Say hello to whoever you want.
+
+    Not providing a name makes the bot say hello to you."""
+    if sb is None:
+        sb = message.sender.first_name
+
+    chat.send(f"Hello {sb}")

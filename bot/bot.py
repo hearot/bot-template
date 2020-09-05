@@ -20,7 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import botogram
-import config
+from environs import Env
 
-bot = botogram.create(config.TELEGRAM_TOKEN)
+import botogram
+
+env = Env()
+env.read_env()
+
+bot = botogram.create(env.str("BOT_TOKEN", default=""))
+
+del env

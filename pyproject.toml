@@ -1,3 +1,6 @@
+[tool.black]
+line-length = 79
+
 [tool.poetry]
 name = "bot"
 version = "0.1.0"
@@ -7,11 +10,11 @@ authors = ["Hearot <gabriel@hearot.it>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 click = "^7.1.2"
-botogram = "^0.5"
-packaging = "^20.4"
 redis = "^3.5.3"
+environs = "^8.0.0"
 
 [tool.poetry.dev-dependencies]
+packaging = "^20.4"
 pytest = "^5.2"
 pre-commit = "^2.6.0"
 

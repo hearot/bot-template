@@ -22,59 +22,9 @@
 
 import click
 
-try:
-    import config
-except (ImportError, ModuleNotFoundError):
-    print(
-        "You need to create a configuration file "
-        "named config.py. See config.sample.py."
-    )
-    exit(1)
-
 
 @click.command()
-@click.option("--mongodb-host", default=None, help="MongoDB host")
-@click.option("--mongodb-password", default=None, help="MongoDB password")
-@click.option("--mongodb-username", default=None, help="MongoDB username")
-@click.option("--redis-database", default=None, help="Redis database")
-@click.option("--redis-host", default=None, help="Redis host")
-@click.option("--redis-password", default=None, help="Redis password")
-@click.option("--redis-port", default=None, help="Redis port")
-@click.option("--token", default=None, help="Telegram bot API token")
-def run(
-    mongodb_host: str,
-    mongodb_password: str,
-    mongodb_username: str,
-    redis_database: int,
-    redis_host: str,
-    redis_password: str,
-    redis_port: int,
-    token: str,
-):
-    if mongodb_host:
-        config.MONGODB_HOST = mongodb_host
-
-    if mongodb_password:
-        config.MONGODB_PASSWORD = mongodb_password
-
-    if mongodb_username:
-        config.MONGODB_USERNAME = mongodb_username
-
-    if redis_database:
-        config.REDIS_DATABASE = redis_database
-
-    if redis_host:
-        config.REDIS_HOST = redis_host
-
-    if redis_password:
-        config.REDIS_PASSWORD = redis_password
-
-    if redis_port:
-        config.REDIS_PORT = redis_port
-
-    if token:
-        config.TELEGRAM_TOKEN = token
-
+def run():
     from bot.bot import bot
 
     bot.run()

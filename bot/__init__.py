@@ -25,7 +25,13 @@ __version__ = "0.1.0"
 
 import pkgutil
 
-for loader, module_name, is_pkg in pkgutil.walk_packages(__path__):
-    __all__.append(module_name)
-    _module = loader.find_module(module_name).load_module(module_name)
-    globals()[module_name] = _module
+from .bot import bot  # noqa
+from .database import redis  # noqa
+
+for _, module_name, __ in pkgutil.walk_packages(__path__):
+    if module_name in ('bot', 'database'):
+        continue
+
+    globals()[module_name] = __import__("bot.%s" % module_name)
+
+del _, __, module_name, pkgutil
