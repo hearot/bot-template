@@ -9,7 +9,6 @@ authors = ["Hearot <gabriel@hearot.it>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-click = "^7.1.2"
 redis = "^3.5.3"
 environs = "^8.0.0"
 
