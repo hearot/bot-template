@@ -23,7 +23,7 @@
 from bot.bot import bot
 
 
-@bot.command("hello_world")
+@bot.command("hw")
 def hello_world_command(chat):
     """Say hello to the world!"""
     chat.send("Hello, world!")

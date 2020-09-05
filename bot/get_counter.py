@@ -24,7 +24,8 @@ from bot.bot import bot
 from bot.database import redis
 
 
-@bot.command("incr")
-def increment(chat):
-    """Increment the counter."""
-    chat.send(str(redis.incr("counter")))
+@bot.command("get")
+def get_counter(chat):
+    """Get the value of the counter."""
+    value = redis.get("counter")
+    chat.send(str(int(value) if value is not None else 0))

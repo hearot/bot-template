@@ -24,7 +24,8 @@ from bot.bot import bot
 from bot.database import redis
 
 
-@bot.command("incr")
-def increment(chat):
-    """Increment the counter."""
-    chat.send(str(redis.incr("counter")))
+@bot.command("set")
+def set_counter(chat, value: int):
+    """Set the counter to a custom value."""
+    redis.set("counter", value)
+    chat.send(str(value))

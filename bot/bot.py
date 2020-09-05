@@ -29,4 +29,4 @@ env.read_env()
 
 bot = botogram.create(env.str("BOT_TOKEN", default=""))
 
-del env
+del botogram, env, Env

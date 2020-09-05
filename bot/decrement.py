@@ -24,7 +24,7 @@ from bot.bot import bot
 from bot.database import redis
 
 
-@bot.command("incr")
-def increment(chat):
-    """Increment the counter."""
-    chat.send(str(redis.incr("counter")))
+@bot.command("decr")
+def decrement(chat):
+    """Decrement the counter."""
+    chat.send(str(redis.decr("counter")))
