@@ -9,7 +9,7 @@ authors = ["Hearot <gabriel@hearot.it>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-redis = "^3.5.3"
+redis = "^4.5.3"
 environs = "^8.0.0"
 
 [tool.poetry.dev-dependencies]
